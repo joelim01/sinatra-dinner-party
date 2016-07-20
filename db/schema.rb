@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 20160719220928) do
 
-  create_table "comment", force: :cascade do |t|
+  create_table "comments", force: :cascade do |t|
     t.integer "user_id"
     t.integer "dinner_id"
     t.integer "dish_id"
@@ -20,28 +20,28 @@ ActiveRecord::Schema.define(version: 20160719220928) do
     t.string  "date"
   end
 
-  create_table "dinner", force: :cascade do |t|
-    t.string "date"
-  end
-
-  create_table "dinner_dish", force: :cascade do |t|
+  create_table "dinner_dishes", force: :cascade do |t|
     t.integer "dinner_id"
     t.integer "dish_id"
   end
 
-  create_table "dish", force: :cascade do |t|
+  create_table "dinners", force: :cascade do |t|
+    t.string "date"
+  end
+
+  create_table "dishes", force: :cascade do |t|
     t.string "name"
     t.string "ingredients"
     t.string "description"
     t.string "imgurl"
   end
 
-  create_table "reservation", force: :cascade do |t|
+  create_table "reservations", force: :cascade do |t|
     t.integer "user_id"
-    t.integer "dinner"
+    t.integer "dinner_id"
   end
 
-  create_table "user", force: :cascade do |t|
+  create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "email"
     t.string "password_digest"

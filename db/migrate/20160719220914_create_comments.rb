@@ -1,6 +1,6 @@
 class CreateComments < ActiveRecord::Migration
   def change
-    create_table :comment do |t|
+    create_table :comments do |t|
       t.integer :user_id
       t.integer :dinner_id
       t.integer :dish_id
