@@ -36,6 +36,10 @@ class ApplicationController < Sinatra::Base
     redirect to "/user/home"
   end
 
+  get '/dish/home' do
+    erb :'/dish/home'
+  end
+
   post '/comment' do
     dinner = Dinner.find(params[:dinner_id])
     user = Helpers.current_user(session)

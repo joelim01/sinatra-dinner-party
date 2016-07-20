@@ -25,7 +25,7 @@
             <%if Helpers.is_logged_in?(session)%>
               <li role="presentation"><a href="/dinner/home">Upcoming Dinners</a></li>
               <li role="presentation"><a href="/user/home">Reservations</a></li>
-              <li role="presentation"><a href="#">Tasting Notes</a></li>
+              <li role="presentation"><a href="/dish/home">Tasting Notes</a></li>
               <li role="presentation"><a href="/user/logout">Log Out</a></li>
             <%end%>
             <%if !Helpers.is_logged_in?(session)%>
