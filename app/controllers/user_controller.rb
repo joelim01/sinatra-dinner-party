@@ -17,7 +17,11 @@ class UserController < ApplicationController
   end
 
   get '/user/login' do
-    erb :'/user/login'
+    if !!(session[:user_id])
+      redirect to '/user/home'
+    else
+      erb :'/user/login'
+    end
   end
 
   get '/user/home' do
