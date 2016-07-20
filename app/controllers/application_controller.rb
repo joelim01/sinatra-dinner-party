@@ -33,9 +33,10 @@ class ApplicationController < Sinatra::Base
   end
 
   post '/comment' do
-    dinner = Dinner.find(params[:id])
+    dinner = Dinner.find(params[:dinner_id])
+    dish = Dish.find(params[:dish_id])
     user = Helpers.current_user(session)
-    Reservation.find_or_create_by(:user_id => user.id, :dinner_id => dinner.id)
+    Comment.create_by(:user_id => user.id, :dinner_id => dinner.id)
     redirect to "/user/home"
   end
 
