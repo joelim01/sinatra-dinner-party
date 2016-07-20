@@ -1,6 +1,9 @@
 <h4>Dinner on <%=@dinner.date%></h4>
 <%@dinner.comments do |comment|%>
   <%=comment.content%>
+  <%if comment.user == Helpers.current_user(session)%>
+    <h5>edit me</h5>
+  <%end%>
 <%end%>
 <form class="form-horizontal" action="/comment" method="post">
 <fieldset>
@@ -14,6 +17,7 @@
     <label class="control-label" for="content"></label>
     <div class="col-md-6">
       <textarea class="form-control" cols="40" id="content" name="content" rows="6"></textarea>
+      <input type="hidden" name="dinner_id" value="<%=dinner.id%>">
       <button id="submit" name="submit" class="btn btn-primary">Submit</button>
     </div>
   </div>
