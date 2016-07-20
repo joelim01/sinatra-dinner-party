@@ -10,12 +10,16 @@
     <label class="control-label" for="content"></label>
     <div class="col-md-6">
       <textarea class="form-control" cols="40" id="content" name="content" rows="6"><%=@comment.content%></textarea>
-      <button id="submit" name="submit" class="btn btn-primary">Submit</button>
     </div>
   </div>
 </div>
 </fieldset>
+<button id="submit" name="submit" class="btn btn-primary">Submit</button>
 </form>
-<form class="" action="/comment/" method="post">
-
+</br>
+<form class="form-horizontal"  action="/comment/<%=@comment.id%>/delete" method="post">
+  <fieldset>
+    <input type="hidden" name="_method" value="delete">
+    <button id="submit" name="submit" class="btn btn-primary">Delete</button>
+  </fieldset>
 </form>

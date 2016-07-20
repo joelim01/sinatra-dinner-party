@@ -60,4 +60,12 @@ class ApplicationController < Sinatra::Base
     redirect to "/dinner/#{@comment.dinner_id}/show"
   end
 
+  delete '/comment/:id/delete' do
+    comment = Comment.find(params[:id])
+    if comment.user_id == Helpers.current_user(session).id
+      Comment.delete(params[:id])
+    end
+    redirect to "/dinner/#{comment.dinner_id}/show"
+  end
+
 end
