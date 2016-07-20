@@ -11,16 +11,24 @@ class ApplicationController < Sinatra::Base
     erb :home
   end
 
-  get 'dinner/:id' do
+  get '/dinner/:id' do
     @dinner = Dinner.find(params[:id])
-    if @dinner.reservations.users.include?(Helpers.current_user(session))
+    if Helpers.current_user(session).dinners.include?(@dinner)
       redirect to "/dinner/show/#{params[:id]}"
     else
       redirect to "/dinner/reserve/#{params[:id]}"
     end
   end
 
-  get 'dinner/show/:id'
+  get '/dinner/:id/show' do
     @dinner = Dinner.find(params[:id])
-    erb
+    erb :"/dinner/show"
+  end
+
+  post '/dinner/:id/reserve' do
+    dinner = Dinner.find(params[:id])
+    user = Helpers.current_user(session)
+    Reservation.find_or_create_by(:user_id => user.id, :dinner_id => dinner.id)
+    redirect to "/user/home"
+  end
 end

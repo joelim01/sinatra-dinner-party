@@ -1,9 +1,14 @@
 <h3>Upcoming Dinners</h3>
 <%Dinner.all.each do |dinner|%>
-  <a href="/dinner/<%=dinner.id%>"><%=dinner.date%></a></BR>
+  <%unless Helpers.current_user(session).dinners.include?(dinner)%>
+    <h5><%=dinner.date%></h5>
+    <form class="" action="/dinner/<%=dinner.id%>/reserve" method="post">
+    <button id="submit" name="submit" class="btn btn-primary">Reserve</button>
+    </form>
+  <%end%>
 <%end%>
 
 <h3>Upcoming and Past Reservations</h3>
 <%Helpers.current_user(session).dinners.each do |dinner|%>
-  <a href="/dinner/<%=dinner.id%>"><%=dinner.date%></a>
+  <a href="/dinner/<%=dinner.id%>/show"><%=dinner.date%></a>
 <%end%>

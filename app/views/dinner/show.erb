@@ -1,0 +1,31 @@
+<h4>Dinner on <%=@dinner.date%></h4>
+<%@dinner.comments do |comment|%>
+  <%=comment.content%>
+<%end%>
+<form class="form-horizontal" action="/comment" method="post">
+<fieldset>
+
+<!-- Form Name -->
+<h5>Leave a comment about this dinner...</h5>
+
+<!-- Text input-->
+<div class="col-md-6 col-sm-6 col-xs-12">
+  <div class="form-group">
+    <label class="control-label" for="content"></label>
+    <div class="col-md-6">
+      <textarea class="form-control" cols="40" id="content" name="content" rows="6"></textarea>
+      <button id="submit" name="submit" class="btn btn-primary">Submit</button>
+    </div>
+  </div>
+</div>
+</fieldset>
+</form>
+
+<h5>Serving...</h5>
+<%@dinner.dishes do |dish|%>
+  <%=dish.name%>
+  <%=dish.ingredients%>
+  <%@dish.comments do |comment|%>
+    <%=comment.content%>
+  <%end%>
+<%end%>
