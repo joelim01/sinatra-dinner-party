@@ -1,8 +1,8 @@
 <h4>Dinner on <%=@dinner.date%></h4>
-<%@dinner.comments do |comment|%>
+<%@dinner.comments.each do |comment|%>
   <%=comment.content%>
   <%if comment.user == Helpers.current_user(session)%>
-    <h5>edit me</h5>
+    <a href="/comment/<%=comment.id%>/edit">Edit</a>
   <%end%>
 <%end%>
 <form class="form-horizontal" action="/comment" method="post">

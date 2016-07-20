@@ -34,10 +34,14 @@ class ApplicationController < Sinatra::Base
 
   post '/comment' do
     dinner = Dinner.find(params[:dinner_id])
-    dish = Dish.find(params[:dish_id])
     user = Helpers.current_user(session)
-    Comment.create_by(:user_id => user.id, :dinner_id => dinner.id)
-    redirect to "/user/home"
+    if params[:dish_id] != ""
+      dish = Dish.find(params[:dish_id])
+      Comment.create(:user_id => user.id, :dinner_id => dinner.id, :dish_id => dish.id, :content => params[:content])
+    else
+      Comment.create(:user_id => user.id, :dinner_id => dinner.id, :content => params[:content])
+    end
+    redirect to "/dinner/#{dinner.id}/show"
   end
 
 end
