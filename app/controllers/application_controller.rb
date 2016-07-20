@@ -11,6 +11,10 @@ class ApplicationController < Sinatra::Base
     erb :home
   end
 
+  get '/dinner/home' do
+    erb :'/dinner/home'
+  end
+
   get '/dinner/:id' do
     @dinner = Dinner.find(params[:id])
     if Helpers.current_user(session).dinners.include?(@dinner)
@@ -42,6 +46,18 @@ class ApplicationController < Sinatra::Base
       Comment.create(:user_id => user.id, :dinner_id => dinner.id, :content => params[:content])
     end
     redirect to "/dinner/#{dinner.id}/show"
+  end
+
+  get '/comment/:id/edit' do
+    @comment = Comment.find(params[:id])
+    erb :"/comment/edit"
+  end
+
+  post '/comment/:id/edit' do
+    @comment = Comment.find(params[:id])
+    @comment.content = params[:content]
+    @comment.save
+    redirect to "/dinner/#{@comment.dinner_id}/show"
   end
 
 end

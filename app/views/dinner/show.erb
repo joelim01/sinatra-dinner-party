@@ -4,6 +4,7 @@
   <%if comment.user == Helpers.current_user(session)%>
     <a href="/comment/<%=comment.id%>/edit">Edit</a>
   <%end%>
+  </br>
 <%end%>
 <form class="form-horizontal" action="/comment" method="post">
 <fieldset>

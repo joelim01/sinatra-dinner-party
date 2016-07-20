@@ -1,0 +1,21 @@
+<form class="form-horizontal" action="/comment/<%=@comment.id%>/edit" method="post">
+<fieldset>
+
+<!-- Form Name -->
+<h5>Edit your comment</h5>
+
+<!-- Text input-->
+<div class="col-md-6 col-sm-6 col-xs-12">
+  <div class="form-group">
+    <label class="control-label" for="content"></label>
+    <div class="col-md-6">
+      <textarea class="form-control" cols="40" id="content" name="content" rows="6"><%=@comment.content%></textarea>
+      <button id="submit" name="submit" class="btn btn-primary">Submit</button>
+    </div>
+  </div>
+</div>
+</fieldset>
+</form>
+<form class="" action="/comment/" method="post">
+
+</form>

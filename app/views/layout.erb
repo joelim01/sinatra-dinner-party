@@ -22,13 +22,14 @@
       <div class="header clearfix">
         <nav>
           <ul class="nav nav-pills pull-right">
-            <li role="presentation"><a href="/">Home</a></li>
             <%if Helpers.is_logged_in?(session)%>
-              <li role="presentation"><a href="/reservations/home">Reservations</a></li>
+              <li role="presentation"><a href="/dinner/home">Upcoming Dinners</a></li>
+              <li role="presentation"><a href="/user/home">Reservations</a></li>
               <li role="presentation"><a href="#">Tasting Notes</a></li>
               <li role="presentation"><a href="/user/logout">Log Out</a></li>
             <%end%>
             <%if !Helpers.is_logged_in?(session)%>
+              <li role="presentation"><a href="/">Home</a></li>
               <li role="presentation"><a href="/user/login">Log In</a></li>
               <li role="presentation"><a href="/user/new">Sign Up</a></li>
             <%end%>
