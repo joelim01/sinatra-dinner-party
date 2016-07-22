@@ -10,6 +10,7 @@ end
 use Rack::MethodOverride
 use UserController
 use CommentsController
+use DinnerController
 run ApplicationController
 
 # page "/admin/*", :layout => "admin"

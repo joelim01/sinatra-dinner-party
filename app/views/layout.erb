@@ -36,7 +36,9 @@
           </ul>
         </nav>
       </div>
-
+      <% if flash.has?(:message) %>
+        <%= flash[:message] %>
+      <% end %>
       <%=yield%>
 
       <nav class="navbar navbar-default  navbar-fixed-bottom" role="navigation">

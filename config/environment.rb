@@ -1,5 +1,5 @@
 require 'bundler/setup'
-
+require 'rack-flash'
 
 Bundler.require
 

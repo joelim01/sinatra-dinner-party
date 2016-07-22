@@ -1,3 +1,4 @@
+
 <h3>Upcoming Dinners</h3>
 <%Dinner.all.each do |dinner|%>
   <%unless Helpers.current_user(session).dinners.include?(dinner)%>

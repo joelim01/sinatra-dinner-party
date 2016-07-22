@@ -1,4 +1,5 @@
+
 <h3>Upcoming and Past Reservations</h3>
-<%Helpers.current_user(session).dinners.each do |dinner|%>
+<%Helpers.current_user(session).dinners.each do |dinner|%></br>
   <a href="/dinner/<%=dinner.id%>/show"><%=dinner.date%></a>
 <%end%>
