@@ -17,7 +17,7 @@ Specs:
   Users must submit their email in _@_._ form. Passwords, emails, cannot be blank.
 - [x] Display validation failures to user with error message (example form URL e.g. /posts/new)
   Using flash messages to tell users when they are not logged in or when they are trying to edit someone elses content.
-- [ ] Your README.md includes a short description, install instructions, a contributors guide and a link to the license for your code
+- [X] Your README.md includes a short description, install instructions, a contributors guide and a link to the license for your code
 
 Confirm
 - [x] You have a large number of small Git commits
