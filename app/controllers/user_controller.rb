@@ -13,9 +13,10 @@ class UserController < ApplicationController
     user = User.new(:name => params[:name], :email => params[:email], :password => params[:password])
     if user.valid?
       user.save
-      session[:id] = user.id
+      session[:user_id] = user.id
       erb :'/user/home'
     else
+      flash[:message] = user.errors.full_messages.join("; ")
       erb :'/user/new'
     end
   end
