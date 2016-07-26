@@ -54,7 +54,7 @@ class AdminController < ApplicationController
 
   get '/dish/new' do
     if Helpers.is_admin?(session)
-
+      erb :'/dish/new'
     else
       flash[:message] = "Log in as a user with admin privileges."
       redirect to '/dinner/home'
@@ -67,8 +67,10 @@ class AdminController < ApplicationController
       dish.dinners << params[:dinner]
       if dish.save
         flash[:message] = "Dish saved."
-        erb :'/dinner/edit'
-
+        redirect to '/dinner/home'
+      else
+        flash[:message] = "Error, dish was not saved."
+        erb :'/dish/new'
     else
       flash[:message] = "Log in as a user with admin privileges."
       redirect to '/dinner/home'
