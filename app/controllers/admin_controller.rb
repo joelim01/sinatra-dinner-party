@@ -25,7 +25,16 @@ class AdminController < ApplicationController
     end
   end
 
-  get '/dinner/:id/edit' do
+  get '/dinner/edit' do
+    if Helpers.is_admin?(session)
+      erb :'/dinner/edit'
+    else
+      flash[:message] = "Log in as a user with admin privileges."
+      redirect to '/dinner/home'
+    end
+  end
+
+  get '/dinner/:id/' do
     if Helpers.is_admin?(session)
       @dinner = Dinner.find(params[:id])
       erb :'/dinner/edit'
@@ -71,6 +80,16 @@ class AdminController < ApplicationController
       else
         flash[:message] = "Error, dish was not saved."
         erb :'/dish/new'
+      end
+    else
+      flash[:message] = "Log in as a user with admin privileges."
+      redirect to '/dinner/home'
+    end
+  end
+
+  get '/dish/edit' do
+    if Helpers.is_admin?(session)
+      erb :'/dish/edit'
     else
       flash[:message] = "Log in as a user with admin privileges."
       redirect to '/dinner/home'
@@ -102,4 +121,5 @@ class AdminController < ApplicationController
       redirect to '/dinner/home'
     end
   end
+
 end

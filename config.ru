@@ -8,6 +8,7 @@ if defined?(ActiveRecord::Migrator) && ActiveRecord::Migrator.needs_migration?
 end
 
 use Rack::MethodOverride
+use AdminController
 use UserController
 use CommentsController
 use DinnerController

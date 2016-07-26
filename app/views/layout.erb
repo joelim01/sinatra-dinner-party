@@ -22,6 +22,12 @@
       <div class="header clearfix">
         <nav>
           <ul class="nav nav-pills pull-right">
+            <%if !Helpers.is_admin?(session)%>
+              <li role="presentation"><a href="/dinner/new">New Dinner</a></li>
+              <li role="presentation"><a href="/dinner/edit">Edit Dinner</a></li>
+              <li role="presentation"><a href="/dish/new">New Dish</a></li>
+              <li role="presentation"><a href="/dish/edit">Edit Dish</a></li>
+            <%end%>
             <%if Helpers.is_logged_in?(session)%>
               <li role="presentation"><a href="/dinner/home">Upcoming Dinners</a></li>
               <li role="presentation"><a href="/user/home">Reservations</a></li>

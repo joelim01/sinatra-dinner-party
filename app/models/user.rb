@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   has_many :dishes, through: :dinners
   validates_presence_of :name
   validates_presence_of :email
-  validates_presence_of :password
   validates_uniqueness_of :email
   validates_format_of :email, :with => /.+@.+\..+/i
+  validates :password, length: { minimum: 8 }, allow_nil: true
 end
