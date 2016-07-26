@@ -34,7 +34,7 @@ class AdminController < ApplicationController
     end
   end
 
-  get '/dinner/:id/' do
+  get '/dinner/:id/edit' do
     if Helpers.is_admin?(session)
       @dinner = Dinner.find(params[:id])
       erb :'/dinner/edit'

@@ -2,7 +2,7 @@
 <fieldset>
 
 <!-- Form Name -->
-<legend>Sign Up</legend>
+<legend>New Dish</legend>
 
 <!-- Text input-->
 <div class="form-group">
@@ -13,21 +13,23 @@
   </div>
 </div>
 
-<!-- Text input-->
+<!-- Textarea input-->
 <div class="form-group">
-  <label class="col-md-4 control-label" for="email">Email</label>
+  <label class="col-md-4 control-label" for="email">Ingredients</label>
   <div class="col-md-4">
-  <input id="email" name="email" type="text" placeholder="" class="form-control input-md" required="">
-
+    <textarea class="form-control" cols="60" id="ingredients" name="ingredients" rows="6"></textarea>
   </div>
 </div>
 
-<!-- Password input-->
+<!-- Select Multiple -->
 <div class="form-group">
-  <label class="col-md-4 control-label" for="password">Password</label>
+  <label class="col-md-4 control-label" for="selectmultiple">Select Dinners</label>
   <div class="col-md-4">
-    <input id="password" name="password" type="password" placeholder="" class="form-control input-md" required="">
-
+    <select id="dinner_id[]" name="dinner_id[]" class="form-control" multiple="multiple">
+      <%Dinner.all.each do |dinner|%>
+        <option value="<%=dinner.id%>"><%=dinner.date%></option>
+      <%end%>
+    </select>
   </div>
 </div>
 
@@ -35,7 +37,7 @@
 <div class="form-group">
   <label class="col-md-4 control-label" for="create"></label>
   <div class="col-md-4">
-    <button id="submit" name="submit" class="btn btn-primary">Sign Up</button>
+    <button id="submit" name="submit" class="btn btn-primary">Create Dish</button>
   </div>
 </div>
 
