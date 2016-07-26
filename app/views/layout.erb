@@ -22,7 +22,7 @@
       <div class="header clearfix">
         <nav>
           <ul class="nav nav-pills pull-right">
-            <%if !Helpers.is_admin?(session)%>
+            <%if Helpers.is_admin?(session)%>
               <li role="presentation"><a href="/dinner/new">New Dinner</a></li>
               <li role="presentation"><a href="/dinner/edit">Edit Dinner</a></li>
               <li role="presentation"><a href="/dish/new">New Dish</a></li>
@@ -45,8 +45,9 @@
       <% if flash.has?(:message) %>
         <%= flash[:message] %>
       <% end %>
+      <div style="padding-bottom:50px">
       <%=yield%>
-
+    </div>
       <nav class="navbar navbar-default  navbar-fixed-bottom" role="navigation">
       <div class="container text-center">
           <p class="navbar-text col-md-12 col-sm-12 col-xs-12">A Learn.co jam.</p>

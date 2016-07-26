@@ -1,0 +1,31 @@
+<%if @dinner == nil%>
+  <%Dinner.all.each do |dinner|%>
+    <a href="/dinner/<%=dinner.id%>/edit">Edit <%=dinner.date%></a></br>
+  <%end%>
+<%else%>
+
+  <form class="form-horizontal" action="/dinner/<%=@dinner.id%>/edit" method="post">
+  <fieldset>
+
+  <!-- Form Name -->
+  <legend>Edit Dinner</legend>
+
+  <!-- Text input-->
+  <div class="form-group">
+    <label class="col-md-4 control-label" for="textinput">Date</label>
+    <div class="col-md-4">
+    <input id="date" name="date" type="text" placeholder="<%=@dinner.date%>" class="form-control input-md" required="">
+    </div>
+  </div>
+
+  <!-- Button -->
+  <div class="form-group">
+    <label class="col-md-4 control-label" for="create"></label>
+    <div class="col-md-4">
+      <button id="submit" name="submit" class="btn btn-primary">Update Dinner</button>
+    </div>
+  </div>
+
+  </fieldset>
+  </form>
+<%end%>

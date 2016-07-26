@@ -50,7 +50,7 @@ class AdminController < ApplicationController
       dinner.date = (params[:date])
       if dinner.save
         flash[:message] = "Dinner Updated."
-        redirect to '/dinner/#{params[:id]}'
+        redirect to "/dinner/#{dinner.id}"
       else
         flash[:message] = "Invalid date."
         redirect to '/dinner/#{params[:id]}/edit'
@@ -71,9 +71,10 @@ class AdminController < ApplicationController
   end
 
   post '/dish/new' do
+    binding.pry
     if Helpers.is_admin?(session)
-      dish = Dish.new(:name => params[:name], :ingredients => params[:ingredients], :description => params[:description])
-      dish.dinners << params[:dinner]
+      dish = Dish.new(name: params[:name], ingredients: params[:ingredients])
+      dish.dinner_ids = params[:dinner_id].map(&:to_i)
       if dish.save
         flash[:message] = "Dish saved."
         redirect to '/dinner/home'

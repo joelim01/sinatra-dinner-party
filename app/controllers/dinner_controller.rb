@@ -12,10 +12,10 @@ class DinnerController < ApplicationController
   get '/dinner/:id' do
     if Helpers.is_logged_in?(session)
       @dinner = Dinner.find(params[:id])
-      if Helpers.current_user(session).dinners.include?(@dinner)
+      if Helpers.current_user(session).dinners.include?(@dinner) || Helpers.is_admin?(session)
         erb :"/dinner/show"
       else
-        redirect to "/dinner/reserve/#{params[:id]}"
+        redirect to "/dinner/#{params[:id]}/reserve"
       end
     else
       flash[:message] = "Please log in to view that page."

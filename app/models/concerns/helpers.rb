@@ -9,7 +9,7 @@ class Helpers
   end
 
   def self.is_admin?(session)
-    User.find(session[:user_id]).role == "Admin"
+    !!(session[:user_id]) && User.find(session[:user_id]).role == "Admin"
   end
 
 

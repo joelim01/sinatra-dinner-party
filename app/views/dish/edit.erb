@@ -1,0 +1,52 @@
+<%if @dish == nil%>
+  <%Dish.all.each do |dish|%>
+    <a href="/dish/<%=dish.id%>/edit">Edit <%=dish.name%></a></br>
+  <%end%>
+<%else%>
+
+<form class="form-horizontal" action="/dish/<%=@dish.id%>/edit" method="post">
+<fieldset>
+
+<!-- Form Name -->
+<legend>Edit Dish</legend>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="textinput">Name</label>
+  <div class="col-md-4">
+  <input id="name" name="name" type="text" placeholder="<%=@dish.name%>" class="form-control input-md" required="">
+
+  </div>
+</div>
+
+<!-- Textarea input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="email">Ingredients</label>
+  <div class="col-md-4">
+    <textarea class="form-control" cols="60" id="ingredients" name="ingredients" rows="6"><%=@dish.ingredients%></textarea>
+  </div>
+</div>
+
+<!-- Select Multiple -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="selectmultiple">Select Dinners</label>
+  <div class="col-md-4">
+    <select id="dinner_id[]" name="dinner_id[]" class="form-control" multiple="multiple">
+      <%Dinner.all.each do |dinner|%>
+        <option value="<%=dinner.id%>" <%=@dish.dinner_ids.include?(dinner.id) ? "selected" : ""%> ><%=dinner.date%></option>
+      <%end%>
+    </select>
+  </div>
+</div>
+
+<!-- Button -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="create"></label>
+  <div class="col-md-4">
+    <button id="submit" name="submit" class="btn btn-primary">Create Dish</button>
+  </div>
+</div>
+
+</fieldset>
+</form>
+<%end%>
