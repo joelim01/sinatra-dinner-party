@@ -37,14 +37,14 @@ class AdminController < ApplicationController
 
   post '/dinner/:id/edit' do
     if Helpers.is_admin?(session)
-      # dish = Dish.new(:name => params[:name], :ingredients => params[:ingredients], :description => params[:description])
-      # dish.dinners << params[:dinner]
-      # if dish.save
-      #   flash[:message] = "Dish saved."
-      #   erb :'/dinner/edit'
+      dinner = Dinner.find(params[:id])
+      dinner.date = (params[:date])
+      if dinner.save
+        flash[:message] = "Dinner Updated."
+        redirect to '/dinner/#{params[:id]}'
       else
         flash[:message] = "Invalid date."
-        redirect to '/dinner/admin'
+        redirect to '/dinner/#{params[:id]}/edit'
       end
     else
       flash[:message] = "Log in as a user with admin privileges."
