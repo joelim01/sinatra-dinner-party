@@ -89,11 +89,17 @@ class AdminController < ApplicationController
 
   post '/dish/:id/edit' do
     if Helpers.is_admin?(session)
-
+      dish = Dish.find(params[:id])
+      if dish.update(:name => params[:name], :ingredients => params[:ingredients], :description => params[:description])
+        flash[:message] = "Dish Updated."
+        redirect to '/dinner/home'
+      else
+        flash[:message] = "Invalid dish data."
+        redirect to '/dish/#{params[:id]}/edit'
+      end
     else
       flash[:message] = "Log in as a user with admin privileges."
       redirect to '/dinner/home'
     end
   end
-
 end
