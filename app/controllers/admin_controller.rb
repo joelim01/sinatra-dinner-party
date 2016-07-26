@@ -1,22 +1,23 @@
 class AdminController < ApplicationController
 
-  get '/dinner/admin' do
+  get '/dinner/new' do
     if Helpers.current_user(session).role == "Admin"
-      erb :'/dinner/admin'
+      erb :'/dinner/new'
     else
       flash[:message] = "Log in as a user with admin privileges."
       redirect to '/dinner/home'
     end
   end
 
-  post '/dinner/admin' do
+  post '/dinner/new' do
     if Helpers.current_user(session).role == "Admin"
       dinner = Dinner.new(:date => params[:date])
       if dinner.save
-        erb :'/dinner/home'
+        flash[:message] = "Dinner Created."
+        erb :'/dinner/new'
       else
         flash[:message] = "Invalid date."
-        redirect to '/dinner/admin'
+        erb :'/dinner/new'
       end
     else
       flash[:message] = "Log in as a user with admin privileges."
@@ -24,22 +25,23 @@ class AdminController < ApplicationController
     end
   end
 
-  get '/dinner/:id/admin' do
+  get '/dinner/:id/edit' do
     if Helpers.current_user(session).role == "Admin"
       @dinner = Dinner.find(params[:id])
-      erb :'/dinner/admin'
+      erb :'/dinner/edit'
     else
       flash[:message] = "Log in as a user with admin privileges."
       redirect to '/dinner/home'
     end
   end
 
-  post '/dinner/:id/admin' do
+  post '/dinner/:id/edit' do
     if Helpers.current_user(session).role == "Admin"
-      dish = Dish.new(:name => params[:name], :ingredients => params[:ingredients], :description => params[:description])
-      dish.dinners << params[:dinner]
-      if dish.save
-        redirect to "/dinner/#{params[:id]}"
+      # dish = Dish.new(:name => params[:name], :ingredients => params[:ingredients], :description => params[:description])
+      # dish.dinners << params[:dinner]
+      # if dish.save
+      #   flash[:message] = "Dish saved."
+      #   erb :'/dinner/edit'
       else
         flash[:message] = "Invalid date."
         redirect to '/dinner/admin'
@@ -61,6 +63,11 @@ class AdminController < ApplicationController
 
   post '/dish/admin' do
     if Helpers.current_user(session).role == "Admin"
+      dish = Dish.new(:name => params[:name], :ingredients => params[:ingredients], :description => params[:description])
+      dish.dinners << params[:dinner]
+      if dish.save
+        flash[:message] = "Dish saved."
+        erb :'/dinner/edit'
 
     else
       flash[:message] = "Log in as a user with admin privileges."

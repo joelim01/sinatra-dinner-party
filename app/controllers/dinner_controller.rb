@@ -23,16 +23,6 @@ class DinnerController < ApplicationController
     end
   end
 
-  # get '/dinner/:id/show' do
-  #   if Helpers.is_logged_in?(session)
-  #     @dinner = Dinner.find(params[:id])
-  #     erb :"/dinner/show"
-  #   else
-  #     flash[:message] = "Please log in to view that page."
-  #     redirect to '/'
-  #   end
-  # end
-
   post '/dinner/:id/reserve' do
     if Helpers.is_logged_in?(session)
       dinner = Dinner.find(params[:id])
