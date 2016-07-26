@@ -52,7 +52,7 @@ class AdminController < ApplicationController
     end
   end
 
-  get '/dish/admin' do
+  get '/dish/new' do
     if Helpers.current_user(session).role == "Admin"
 
     else
@@ -61,7 +61,7 @@ class AdminController < ApplicationController
     end
   end
 
-  post '/dish/admin' do
+  post '/dish/new' do
     if Helpers.current_user(session).role == "Admin"
       dish = Dish.new(:name => params[:name], :ingredients => params[:ingredients], :description => params[:description])
       dish.dinners << params[:dinner]
