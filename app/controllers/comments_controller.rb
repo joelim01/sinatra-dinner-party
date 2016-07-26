@@ -10,7 +10,7 @@ class CommentsController < ApplicationController
       else
         Comment.create(:user_id => user.id, :dinner_id => dinner.id, :content => params[:content])
       end
-      redirect to "/dinner/#{dinner.id}/show"
+      redirect to "/dinner/#{dinner.id}"
     else
       flash[:message] = "Please log in to do that."
       redirect to '/'
@@ -20,7 +20,7 @@ class CommentsController < ApplicationController
   get '/comment/:id/edit' do
     if Helpers.is_logged_in?(session)
       @comment = Comment.find(params[:id])
-      if Helpers.current_user == @comment.user
+      if Helpers.current_user(session) == @comment.user
         erb :"/comment/edit"
       else
         flash[:message] = "Sorry, you can't edit another user's comment."
@@ -37,7 +37,7 @@ class CommentsController < ApplicationController
       @comment = Comment.find(params[:id])
       @comment.content = params[:content]
       @comment.save
-      redirect to '/dinner/#{@comment.dinner_id}/show'
+      redirect to '/dinner/#{@comment.dinner_id}'
     else
       redirect to '/'
     end
@@ -49,10 +49,10 @@ class CommentsController < ApplicationController
       if comment.user_id == Helpers.current_user(session).id
         Comment.delete(params[:id])
       end
-      redirect to "/dinner/#{comment.dinner_id}/show"
+      redirect to "/dinner/#{comment.dinner_id}"
     else
       flash[:message] = "Sorry, you can't delete another user's comment."
-      redirect to "/dinner/#{comment.dinner_id}/show"
+      redirect to "/dinner/#{comment.dinner_id}"
     end
   end
 end

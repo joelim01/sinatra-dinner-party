@@ -1,4 +1,4 @@
-<%Helpers.current_user(session).dishes.each do |dish|%>
+<%Helpers.current_user(session).dishes.distinct.each do |dish|%>
   <h5><%=dish.name%></h5>
   <%=dish.ingredients%></br>
   <%dish.comments.each do |comment|%>

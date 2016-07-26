@@ -13,7 +13,7 @@ class DinnerController < ApplicationController
     if Helpers.is_logged_in?(session)
       @dinner = Dinner.find(params[:id])
       if Helpers.current_user(session).dinners.include?(@dinner)
-        redirect to "/dinner/show/#{params[:id]}"
+        erb :"/dinner/show"
       else
         redirect to "/dinner/reserve/#{params[:id]}"
       end
@@ -23,15 +23,15 @@ class DinnerController < ApplicationController
     end
   end
 
-  get '/dinner/:id/show' do
-    if Helpers.is_logged_in?(session)
-      @dinner = Dinner.find(params[:id])
-      erb :"/dinner/show"
-    else
-      flash[:message] = "Please log in to view that page."
-      redirect to '/'
-    end
-  end
+  # get '/dinner/:id/show' do
+  #   if Helpers.is_logged_in?(session)
+  #     @dinner = Dinner.find(params[:id])
+  #     erb :"/dinner/show"
+  #   else
+  #     flash[:message] = "Please log in to view that page."
+  #     redirect to '/'
+  #   end
+  # end
 
   post '/dinner/:id/reserve' do
     if Helpers.is_logged_in?(session)

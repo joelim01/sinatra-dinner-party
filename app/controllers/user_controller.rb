@@ -14,10 +14,10 @@ class UserController < ApplicationController
     if user.valid?
       user.save
       session[:user_id] = user.id
-      erb :'/user/home'
+      redirect to '/user/home'
     else
       flash[:message] = user.errors.full_messages.join("; ")
-      erb :'/user/new'
+      redirect to '/user/new'
     end
   end
 
@@ -31,8 +31,10 @@ class UserController < ApplicationController
   end
 
   get '/user/home' do
-    if Helpers.is_logged_in?(session)
+    if Helpers.is_logged_in?(session) && Helpers.current_user(session).dinners != []
       erb :'/user/home'
+    elsif Helpers.is_logged_in?(session) && Helpers.current_user(session).dinners == []
+      erb :'/dinner/home'
     else
       flash[:message] = "Please log in to view that page."
       erb :'/user/login'
